@@ -44,9 +44,15 @@ This project leverages and explores technologies suggested by the hackathon, inc
 
 | Name | Role |
 |------|------|
-| **Harsh Khem** | Team Leader • AI/ML Engineer • Full Stack Developer |
-| **Zainab Rizvi** | Frontend & UI/UX Developer |
-| **Adiba Ansari** | Backend Development • Documentation & Testing |
+| **Harsh Khem** | Full Stack Developer |
+| **Aditya** | Frontend Developer |
+
+## Project Status
+
+✅ Frontend deployed on Firebase  
+✅ Backend deployed on Render  
+✅ AI Chat Integration Working  
+✅ Production Ready  
 
 ## 🎯 Challenge Alignment
 
@@ -70,33 +76,55 @@ AquaGuard AI directly satisfies the hackathon goals by delivering:
 - **Future-ready platform**: Extensible for IoT integration and advanced autonomous actions.
 
 ## Overview
-AquaGuard is a comprehensive water monitoring and issue reporting platform designed to bridge the gap between citizens and regional water authorities. It provides citizens with an easy-to-use interface to report water contamination, pressure issues, or supply outages. Simultaneously, it equips officials with a powerful Command Center to track these reports, view predictive AI risk models, monitor live sensor telemetry, and orchestrate rapid response protocols.
+AquaGuard is a comprehensive water monitoring and issue reporting platform designed to bridge the gap between citizens and regional water authorities. It provides citizens with an easy-to-use interface to report water contamination, pressure issues, or supply outages. Simultaneously, it equips officials with a powerful Command Center to track these reports, view predictive AI risk models, monitor live sensor telemetry, and orchestrate rapid response protocols. 
+
+**Deployment Status:** 
+The platform is currently production-ready and live. The React frontend is seamlessly deployed on **Firebase Hosting**, while the Python FastAPI backend serving AI intelligence runs securely on **Render**. Both deployments are connected and fully operational.
 
 ## Features
+- **AI Chat Assistant (Google Gemini)**: Intelligent conversational agent to aid officials with data analysis and reporting.
+- **Citizen Dashboard**: Dedicated portal for citizens to track their submitted reports.
+- **Government Dashboard**: Command Center for officials to review all complaints and orchestrate responses.
+- **Complaint Management**: End-to-end tracking of water-related issues with status updates.
+- **Locality Analytics**: In-depth analysis and forecasting of potential water threats by region.
+- **Interactive Maps**: Geographic visualization (Heatmaps/Threat Maps) of water contamination risks.
+- **Smart Dashboard**: Consolidates real-time sensor data, AI insights, and citizen reports in one view.
+- **Responsive UI**: Fully mobile-optimized layouts for access on any device.
+- **Production Deployment**: Cloud-hosted infrastructure for both frontend and backend.
 - **User Authentication**: Secure login and session management powered by Firebase Auth.
-- **Official Profiles**: Ability for water authority personnel to create and edit profiles, including Cloudinary-powered profile picture uploads.
-- **Citizen Issue Reporting**: Streamlined form for users to report water-related issues with optional photo evidence.
-- **Complaint Tracking**: Dedicated dashboard for citizens to track the status (Pending, In Progress, Resolved) of their submitted reports.
-- **Command Center Dashboard**: Advanced interface for officials to review all citizen complaints, monitor interactive disease outbreak timelines, and analyze real-time sensor data.
-- **Interactive Threat Map**: Geographic visualization of water contamination risks across different localities using Leaflet.
-- **Route Protection**: Secure authenticated routing ensuring only authorized users can access sensitive official dashboards.
+- **Official Profiles**: Cloudinary-powered profile picture uploads and role management.
+
+## 🏗️ System Architecture
+
+(Architecture Diagram Here)
 
 ## Tech Stack
-| Technology | Purpose |
-| :--- | :--- |
-| **React 19 + Vite** | High-performance frontend framework and build tool |
-| **Tailwind CSS** | Utility-first styling for a responsive, modern UI design |
-| **React Router DOM** | Client-side routing for seamless single-page application navigation |
-| **Firebase Auth & Firestore** | Secure authentication and real-time NoSQL database for data persistence |
-| **Cloudinary** | Unsigned image uploads for handling complaint photos and user avatars |
-| **Recharts** | Data visualization for interactive timelines and risk charts |
-| **Leaflet & React-Leaflet** | Interactive geographic threat mapping |
-| **Lucide React** | Consistent, crisp iconography across the application |
+
+### Frontend
+- React
+- Vite
+- JavaScript
+- CSS (Tailwind CSS)
+- Leaflet & React-Leaflet
+- Recharts
+
+### Backend
+- FastAPI
+- Python
+
+### AI
+- Google Gemini API
+
+### Deployment & Services
+- Firebase Hosting (Frontend Deployment)
+- Render (Backend Deployment)
+- Firebase Auth & Firestore (Database & Authentication)
+- Cloudinary (Image Storage)
 
 ## Project Structure
 ```text
 aquaguard-ai/
-├── backend/                # Python backend for AI models and external API endpoints
+├── backend/                # Python FastAPI backend for AI models and external API endpoints
 ├── src/
 │   ├── assets/             # Static images and icons
 │   ├── components/         # Reusable UI components (e.g., ProtectedRoute, ThreatMap)
@@ -110,27 +138,14 @@ aquaguard-ai/
 └── package.json            # Project dependencies and scripts
 ```
 
-## Installation & Setup Guide
+## Environment Variables
 
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
-- git
+For local development and deployment, you must define the following environment variables. 
+**⚠️ IMPORTANT:** Never hardcode actual API keys in the source code, and ensure `.env` files are added to `.gitignore` to prevent exposing secrets.
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/HARSH-KHEM/AquaGuard-AI.git
-cd AquaGuard-AI/aquaguard-ai
-```
-
-### 2. Install dependencies
-```bash
-npm install
-```
-
-### 3. Environment Variables
-Currently, Firebase and Cloudinary configurations are integrated into the source files. For production environments, it is recommended to extract these into a `.env` file at the root of the `aquaguard-ai` directory:
+### Frontend (`.env` in root directory)
 ```env
+VITE_API_BASE_URL=your_deployed_backend_url
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
 VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
@@ -140,28 +155,33 @@ VITE_FIREBASE_APP_ID=your_firebase_app_id
 VITE_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 VITE_CLOUDINARY_UPLOAD_PRESET=your_cloudinary_upload_preset
 ```
-*(Note: You will need to update `src/services/firebase.js` and the Cloudinary fetch requests to use `import.meta.env` if you transition to environment variables).*
 
-### 4. Firebase Setup
-1. Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
-2. Enable **Authentication** (Email/Password provider).
-3. Enable **Firestore Database**.
-4. Deploy the required Firestore Security Rules (see below).
-
-### 5. Cloudinary Setup
-1. Create a free [Cloudinary](https://cloudinary.com/) account.
-2. Navigate to Settings > Upload and create a new **Unsigned Upload Preset**.
-
-### 6. Run the Application
-```bash
-npm run dev
+### Backend (`backend/.env`)
+```env
+GEMINI_API_KEY=your_google_gemini_api_key
+PORT=8080
 ```
-The application will be available at `http://localhost:5173`.
 
-### 7. Build for Production
+## Deployment Instructions
+
+The application is configured for split deployment:
+
+### 1. Frontend → Firebase Hosting
+Ensure Firebase CLI is installed and configured (`firebase login`).
 ```bash
+# Build the production assets
 npm run build
+
+# Deploy to Firebase Hosting
+firebase deploy --only hosting
 ```
+
+### 2. Backend → Render
+1. Connect your GitHub repository to Render as a **Web Service**.
+2. Select **Docker** as the Environment.
+3. Set the **Root Directory** to `backend`.
+4. Add the `GEMINI_API_KEY` as an environment variable in the Render dashboard.
+5. Render will automatically detect the `Dockerfile`, inject the `$PORT`, and deploy the FastAPI server.
 
 ## Firestore Security Rules Note
 To ensure the application functions correctly while protecting user data, you must deploy the following rules in your Firestore database. These rules ensure users can only modify their own profiles and complaints, while allowing officials appropriate read/write access.
