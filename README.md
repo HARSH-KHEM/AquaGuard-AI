@@ -1,6 +1,75 @@
 # AquaGuard AI
 **Predictive Water Intelligence and Citizen Issue Reporting System**
 
+## 🏆 Hackathon
+
+| Field | Details |
+|--------|---------|
+| **Hackathon** | Gen AI Academy APAC Edition |
+| **Platform** | Hack2Skill |
+| **Track** | AI for Better Living and Smarter Communities |
+| **Theme** | AI-powered Decision Intelligence Platform |
+| **Team Name** | HACK-X |
+
+### Problem Statement
+
+AquaGuard AI is built for the **"AI for Better Living and Smarter Communities"** challenge.
+
+The objective is to develop an AI-powered decision intelligence platform that leverages AI models, data analytics, and intelligent automation to help individuals, communities, organizations, and city stakeholders analyze information, generate insights, predict outcomes, and make smarter decisions that improve everyday life.
+
+This project aligns with the challenge by focusing on:
+
+- AI-powered environmental monitoring
+- Water quality intelligence
+- Predictive analytics
+- Sustainable resource management
+- Intelligent recommendations
+- Community well-being
+- Data-driven decision making
+
+### Technologies Inspired by the Challenge
+
+This project leverages and explores technologies suggested by the hackathon, including:
+
+- Google Gemini
+- Large Language Models (LLMs)
+- Retrieval-Augmented Generation (RAG)
+- Multimodal AI
+- Computer Vision
+- Predictive Analytics
+- Workflow Automation
+- Explainable AI
+
+## 👥 Team HACK-X
+
+| Name | Role |
+|------|------|
+| **Harsh Khem** | Team Leader • AI/ML Engineer • Full Stack Developer |
+| **Madhu Sri Somu** | AI Research & Model Development |
+| **Zainab Rizvi** | Frontend & UI/UX Developer |
+| **Adiba Ansari** | Backend Development • Documentation & Testing |
+
+## 🎯 Challenge Alignment
+
+AquaGuard AI directly satisfies the hackathon goals by delivering:
+
+- **AI-driven environmental intelligence**: Processing real-time multi-source data to assess risks.
+- **Real-time water quality assessment**: Empowering citizens and officials with live dashboards.
+- **Predictive insights for communities**: Forecasting potential outbreak events before they escalate.
+- **Sustainable decision support**: Suggesting effective interventions and resource routing.
+- **Automation using Generative AI**: Simplifying complex reports and alerting for stakeholders.
+- **Smart recommendations for better public health**: Providing actionable mitigation steps.
+- **Scalable architecture for smart cities**: Built on robust cloud infrastructure ready for city-wide deployment.
+
+## 🚀 Why AquaGuard AI?
+
+- **Real-world impact**: Directly addresses critical public health and water safety challenges.
+- **AI-first architecture**: Intelligence is built into the core, not added as an afterthought.
+- **Scalable design**: Capable of expanding from local municipalities to national deployments.
+- **Community-focused solution**: Empowers citizens while enabling officials.
+- **Practical implementation**: Uses accessible, modern technologies for rapid deployment.
+- **Future-ready platform**: Extensible for IoT integration and advanced autonomous actions.
+
 ## Overview
 AquaGuard is a comprehensive water monitoring and issue reporting platform designed to bridge the gap between citizens and regional water authorities. It provides citizens with an easy-to-use interface to report water contamination, pressure issues, or supply outages. Simultaneously, it equips officials with a powerful Command Center to track these reports, view predictive AI risk models, monitor live sensor telemetry, and orchestrate rapid response protocols.
 
