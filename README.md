@@ -44,8 +44,9 @@ This project leverages and explores technologies suggested by the hackathon, inc
 
 | Name | Role |
 |------|------|
-| **Harsh Khem** | Full Stack Developer |
-| **Aditya** | Frontend Developer |
+| **Harsh Khem** | Team Leader • AI/ML Engineer • Full Stack Developer |
+| **Zainab Rizvi** | Frontend & UI/UX Developer |
+| **Adiba Ansari** | Backend Development • Documentation & Testing |
 
 ## Project Status
 
