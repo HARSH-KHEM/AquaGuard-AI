@@ -45,7 +45,6 @@ This project leverages and explores technologies suggested by the hackathon, inc
 | Name | Role |
 |------|------|
 | **Harsh Khem** | Team Leader • AI/ML Engineer • Full Stack Developer |
-| **Madhu Sri Somu** | AI Research & Model Development |
 | **Zainab Rizvi** | Frontend & UI/UX Developer |
 | **Adiba Ansari** | Backend Development • Documentation & Testing |
 
