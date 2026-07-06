@@ -3,7 +3,8 @@ import LandingPage from './pages/LandingPage';
 import CitizenDashboard from './pages/CitizenDashboard';
 import OfficialDashboard from './pages/OfficialDashboard';
 import ThreatMapPage from './pages/ThreatMapPage';
-import OfficialLogin from './pages/OfficialLogin';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import CreateProfile from './pages/CreateProfile';
 import ReportIssue from './pages/ReportIssue';
 import MyComplaints from './pages/MyComplaints';
@@ -17,7 +18,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<OfficialLogin />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/citizen" element={<CitizenDashboard />} />
           <Route 
             path="/official" 

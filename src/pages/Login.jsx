@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../services/firebase';
 
-export default function OfficialLogin() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -96,6 +96,15 @@ export default function OfficialLogin() {
             )}
           </button>
         </form>
+
+        <div className="mt-8 text-center">
+          <p className="text-on-surface-variant text-body-sm">
+            Don't have an account?{' '}
+            <Link to="/signup" className="text-primary font-bold hover:underline">
+              Sign Up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
