@@ -41,6 +41,7 @@ const OfficialDashboard = () => {
   const [chatInput, setChatInput] = useState('');
   const [isChatLoading, setIsChatLoading] = useState(false);
   const [selectedLocalityId, setSelectedLocalityId] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const chatEndRef = useRef(null);
 
   const { currentUser, profile, profileComplete } = useAuth();
@@ -136,51 +137,58 @@ const OfficialDashboard = () => {
 
   return (
     <div className="dark h-screen flex bg-[#020B18] text-[#dee3e9] font-body-sm overflow-hidden">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div className="md:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setIsSidebarOpen(false)}></div>
+      )}
       {/* SIDEBAR */}
-      <aside className="w-[280px] h-screen fixed left-0 top-0 bg-surface-container border-r border-white/10 flex flex-col py-xl z-50">
-        <div className="px-8 mb-10">
-          <Link to="/" className="text-headline-md font-headline-md font-black text-primary tracking-tight">AquaGuard AI</Link>
-          <p className="text-label-caps font-label-caps text-on-surface-variant mt-1 uppercase tracking-widest opacity-60">Command Center</p>
+      <aside className={`w-[280px] h-screen fixed left-0 top-0 bg-surface-container border-r border-white/10 flex flex-col py-xl z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+        <div className="px-8 mb-10 flex justify-between items-center">
+          <div>
+            <Link to="/" className="text-headline-md font-headline-md font-black text-primary tracking-tight">AquaGuard AI</Link>
+            <p className="text-label-caps font-label-caps text-on-surface-variant mt-1 uppercase tracking-widest opacity-60">Command Center</p>
+          </div>
+          <button onClick={() => setIsSidebarOpen(false)} className="md:hidden material-symbols-outlined text-on-surface-variant">close</button>
         </div>
         <nav className="flex-1 space-y-1">
           <button 
             className={`flex items-center gap-3 px-6 py-4 w-full transition-all duration-200 ${activeTab === 'overview' ? 'active-nav' : 'text-on-surface-variant hover:text-on-surface'}`}
-            onClick={() => setActiveTab('overview')}
+            onClick={() => { setActiveTab('overview'); setIsSidebarOpen(false); }}
           >
             <Map className="w-5 h-5" />
             <span className="font-label-caps text-label-caps">Intelligence</span>
           </button>
           <button 
             className={`flex items-center gap-3 px-6 py-4 w-full transition-all duration-200 ${activeTab === 'forecast' ? 'active-nav' : 'text-on-surface-variant hover:text-on-surface'}`}
-            onClick={() => setActiveTab('forecast')}
+            onClick={() => { setActiveTab('forecast'); setIsSidebarOpen(false); }}
           >
             <Table2 className="w-5 h-5" />
             <span className="font-label-caps text-label-caps">Network Status</span>
           </button>
           <button 
             className={`flex items-center gap-3 px-6 py-4 w-full transition-all duration-200 ${activeTab === 'assistant' ? 'active-nav' : 'text-on-surface-variant hover:text-on-surface'}`}
-            onClick={() => setActiveTab('assistant')}
+            onClick={() => { setActiveTab('assistant'); setIsSidebarOpen(false); }}
           >
             <MessageSquare className="w-5 h-5" />
             <span className="font-label-caps text-label-caps">AI Assistant</span>
           </button>
           <button 
             className={`flex items-center gap-3 px-6 py-4 w-full transition-all duration-200 ${activeTab === 'timeline' ? 'active-nav' : 'text-on-surface-variant hover:text-on-surface'}`}
-            onClick={() => setActiveTab('timeline')}
+            onClick={() => { setActiveTab('timeline'); setIsSidebarOpen(false); }}
           >
             <Activity className="w-5 h-5" />
             <span className="font-label-caps text-label-caps">Outbreak Timeline</span>
           </button>
           <button 
             className={`flex items-center gap-3 px-6 py-4 w-full transition-all duration-200 ${activeTab === 'settings' ? 'active-nav' : 'text-on-surface-variant hover:text-on-surface'}`}
-            onClick={() => setActiveTab('settings')}
+            onClick={() => { setActiveTab('settings'); setIsSidebarOpen(false); }}
           >
             <SettingsIcon className="w-5 h-5" />
             <span className="font-label-caps text-label-caps">Settings</span>
           </button>
           <button 
             className={`flex items-center gap-3 px-6 py-4 w-full transition-all duration-200 ${activeTab === 'complaints' ? 'active-nav' : 'text-on-surface-variant hover:text-on-surface'}`}
-            onClick={() => setActiveTab('complaints')}
+            onClick={() => { setActiveTab('complaints'); setIsSidebarOpen(false); }}
           >
             <AlertCircle className="w-5 h-5" />
             <span className="font-label-caps text-label-caps">Complaints</span>
@@ -216,17 +224,18 @@ const OfficialDashboard = () => {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 ml-[280px] min-h-screen flex flex-col relative overflow-hidden">
+      <main className="flex-1 md:ml-[280px] min-h-screen flex flex-col relative overflow-hidden w-full">
         {/* TOP APP BAR */}
-        <header className="sticky top-0 w-full px-margin-desktop py-6 z-40 bg-[#020B18]/80 backdrop-blur-xl border-b border-white/5 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1 bg-error-container/20 border border-error/30 rounded-full">
+        <header className="sticky top-0 w-full px-4 md:px-margin-desktop py-4 md:py-6 z-30 bg-[#020B18]/80 backdrop-blur-xl border-b border-white/5 flex justify-between items-center flex-wrap gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
+            <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="md:hidden material-symbols-outlined text-on-surface p-1">menu</button>
+            <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-error-container/20 border border-error/30 rounded-full">
               <span className="w-2 h-2 rounded-full bg-error pulse-live"></span>
               <span className="text-label-caps font-bold text-error">LIVE THREAT MONITOR</span>
             </div>
             <h2 className="text-headline-sm font-headline-sm text-on-surface">{titles[activeTab]}</h2>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             <span className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">search</span>
             <div className="relative">
               <span className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</span>

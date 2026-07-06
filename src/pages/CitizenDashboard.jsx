@@ -5,6 +5,7 @@ import { riskTrendData, localities } from '../data/mockData';
 
 const CitizenDashboard = () => {
   const [selectedLocality, setSelectedLocality] = useState("Rohini");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [riskScore, setRiskScore] = useState(48);
   const [sensors, setSensors] = useState({
     pH: 9.2, turbidity: 5.8, chlorine: 0.4, ecoli: 'Present',
@@ -99,15 +100,28 @@ const CitizenDashboard = () => {
           <p className="hidden md:block text-[#64748B] font-body-sm italic">Is your water safe today?</p>
         </div>
         <div className="flex items-center gap-6">
-          <div className="flex items-center bg-white/5 border border-white/10 rounded-full p-1">
+          <Link to="/threat-map" className="hidden md:block hover:text-[#38BDF8] transition-colors">Risk Heatmap</Link>
+          <Link to="/my-complaints" className="hidden md:block hover:text-[#38BDF8] transition-colors">Track Complaint</Link>
+          <Link to="/report-issue" className="bg-[#EF4444]/10 text-[#EF4444] px-5 py-2.5 rounded-xl font-bold hover:bg-[#EF4444]/20 transition-all border border-[#EF4444]/20 hidden md:block">Report Issue</Link>
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden material-symbols-outlined text-[#94A3B8]">menu</button>
+          <div className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full p-1">
             <button className="px-5 py-1.5 text-label-caps font-semibold bg-primary text-white rounded-full transition-all duration-300">EN</button>
             <button className="px-5 py-1.5 text-label-caps font-semibold text-[#64748B] hover:text-[#F0F9FF] transition-all duration-300">हिंदी</button>
           </div>
-          <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary cursor-pointer hover:bg-primary/20 transition-all">
+          <div className="hidden md:flex w-10 h-10 rounded-full bg-primary/10 border border-primary/20 items-center justify-center text-primary cursor-pointer hover:bg-primary/20 transition-all">
             <span className="material-symbols-outlined">person</span>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed top-[72px] left-0 w-full bg-[#020B18] border-b border-white/10 z-40 p-4 flex flex-col gap-4 shadow-xl">
+          <Link onClick={() => setIsMobileMenuOpen(false)} to="/threat-map" className="text-[#94A3B8] font-bold border-b border-white/5 pb-2">Risk Heatmap</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} to="/my-complaints" className="text-[#94A3B8] font-bold border-b border-white/5 pb-2">Track Complaint</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} to="/report-issue" className="text-[#EF4444] font-bold mt-2">Report Issue</Link>
+        </div>
+      )}
 
       {/* Content Wrapper */}
       <main className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl space-y-lg">

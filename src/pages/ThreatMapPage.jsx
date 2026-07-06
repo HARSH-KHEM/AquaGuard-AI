@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ThreatMap from '../components/ThreatMap';
 
 export default function ThreatMapPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <div className="bg-[#020B18] text-[#dee3e9] min-h-screen flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
       {/* Navigation Bar */}
@@ -18,11 +19,23 @@ export default function ThreatMapPage() {
           <Link className="text-on-surface-variant font-medium hover:text-on-surface transition-colors font-label-caps text-label-caps" to="/official" state={{ activeTab: 'forecast' }}>Reports</Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link to="/official" state={{ activeTab: 'assistant' }} className="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-xl font-bold transition-all hover:scale-105 active:scale-95">
+          <Link to="/official" state={{ activeTab: 'assistant' }} className="hidden md:block bg-primary hover:bg-secondary text-white px-6 py-2 rounded-xl font-bold transition-all hover:scale-105 active:scale-95">
             Hydra AI
           </Link>
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden material-symbols-outlined text-on-surface">menu</button>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed top-[72px] left-0 w-full bg-[#020B18] border-b border-white/10 z-40 p-4 flex flex-col gap-4 shadow-xl">
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/">Dashboard</Link>
+          <span className="text-primary font-bold border-b border-white/5 pb-2">Threat Map</span>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/official" state={{ activeTab: 'timeline' }}>Analytics</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/official" state={{ activeTab: 'forecast' }}>Reports</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} to="/official" state={{ activeTab: 'assistant' }} className="text-white font-bold py-2 bg-primary rounded-xl text-center mt-2">Hydra AI</Link>
+        </div>
+      )}
 
       {/* Page Header */}
       <header className="px-8 pt-8 pb-4">

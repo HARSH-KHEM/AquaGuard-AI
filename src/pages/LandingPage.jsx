@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { auth } from '../services/firebase';
@@ -7,6 +7,7 @@ import { signOut } from 'firebase/auth';
 const LandingPage = () => {
   const cardsRef = useRef([]);
   const { currentUser, profile, profileComplete } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -104,10 +105,32 @@ const LandingPage = () => {
               </button>
             </>
           )}
-          <button className="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-xl font-bold transition-all hover:scale-105 active:scale-95">Hydra AI</button>
-          <button className="md:hidden material-symbols-outlined text-on-surface">menu</button>
+          <button className="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-xl font-bold transition-all hover:scale-105 active:scale-95 hidden md:block">Hydra AI</button>
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden material-symbols-outlined text-on-surface">menu</button>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed top-[72px] left-0 w-full bg-[#020B18] border-b border-white/10 z-40 p-4 flex flex-col gap-4 shadow-xl">
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-primary font-bold border-b border-white/5 pb-2" to="/">Dashboard</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/threat-map">Threat Map</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/official" state={{ activeTab: 'timeline' }}>Analytics</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/official" state={{ activeTab: 'forecast' }}>Reports</Link>
+          {currentUser && (
+            <>
+              <Link onClick={() => setIsMobileMenuOpen(false)} className="text-secondary font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/report-issue">Report Issue</Link>
+              <Link onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface-variant font-medium hover:text-on-surface transition-colors border-b border-white/5 pb-2" to="/my-complaints">My Complaints</Link>
+            </>
+          )}
+          {!currentUser ? (
+             <Link onClick={() => setIsMobileMenuOpen(false)} to="/login" className="text-white font-bold py-2 border-b border-white/5 pb-2">Official Login</Link>
+          ) : (
+             <Link onClick={() => setIsMobileMenuOpen(false)} to="/official" className="text-primary font-bold py-2 border-b border-white/5 pb-2">Command Center</Link>
+          )}
+          <button className="bg-primary text-white px-6 py-2 rounded-xl font-bold mt-2">Hydra AI</button>
+        </div>
+      )}
 
       {/* HERO SECTION */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-32 text-center radial-glow overflow-hidden">
